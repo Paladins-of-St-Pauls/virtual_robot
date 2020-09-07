@@ -67,4 +67,10 @@ public interface Telemetry {
      * Clear the telemetry display, then write any data that has been added since the previous update.
      */
     public void update();
+
+    public boolean isAutoClear();
+
+    public void clear();
+
+    public void clearAll();
 }

@@ -67,8 +67,8 @@ public class VirtualRobotController {
     //Virtual Hardware
     private HardwareMap hardwareMap = null;
     private VirtualBot bot = null;
-    GamePad gamePad1 = new GamePad();
-    GamePad gamePad2 = new GamePad();
+    Gamepad gamePad1 = new Gamepad();
+    Gamepad gamePad2 = new Gamepad();
     GamePadHelper gamePadHelper = null;
     ScheduledExecutorService gamePadExecutorService = Executors.newSingleThreadScheduledExecutor();
 
@@ -568,6 +568,26 @@ public class VirtualRobotController {
         public synchronized int blue(){ return blue; }
         public synchronized int alpha() { return alpha; }
 
+        /**
+         * Does nothing.
+         *
+         * @param state
+         */
+        @Override
+        public void enableLed(boolean state) {
+
+        }
+
+        /**
+         * Does nothing.
+         *
+         * @return 0
+         */
+        @Override
+        public int argb() {
+            return 0;
+        }
+
         public synchronized void updateColor(double x, double y){
             int colorX = (int)(x + halfFieldWidth);
             int colorY = (int)(halfFieldWidth - y);
@@ -640,9 +660,9 @@ public class VirtualRobotController {
      */
     public class OpModeBase {
         protected final HardwareMap hardwareMap;
-        protected final GamePad gamepad1;
-        protected final GamePad gamepad2;
-        protected final Telemetry telemetry;
+        protected final Gamepad gamepad1;
+        protected final Gamepad gamepad2;
+        public final Telemetry telemetry;
 
         public OpModeBase() {
             hardwareMap = VirtualRobotController.this.hardwareMap;
@@ -690,6 +710,23 @@ public class VirtualRobotController {
                 setText(data.toString());
                 data.setLength(0);
             }
+        }
+
+        @Override
+        public boolean isAutoClear() {
+            return false;
+        }
+
+        @Override
+        public void clear() {
+            data.setLength(0);
+            setText(data.toString());
+        }
+
+        @Override
+        public void clearAll() {
+            data.setLength(0);
+            setText(data.toString());
         }
 
         private void setText(String text){
