@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.paladins.config;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -20,6 +21,8 @@ public class TwoWheelBotConfiguration extends RobotConfiguration {
     public DcMotor rightMotor;
 
     public ColorSensor colorSensor;
+
+    public GyroSensor gyroSensor;
 
     /**
      * Assign your class instance variables to the saved device names in the hardware map
@@ -39,6 +42,8 @@ public class TwoWheelBotConfiguration extends RobotConfiguration {
 
 
         colorSensor = hardwareMap.colorSensor.get("color_sensor");
+
+        gyroSensor = hardwareMap.gyroSensor.get("gyro_sensor");
     }
 
 
