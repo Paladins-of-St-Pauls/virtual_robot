@@ -1,14 +1,16 @@
-package org.firstinspires.ftc.teamcode.paladins.config;
+package org.firstinspires.ftc.teamcode.paladins.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 
+import org.firstinspires.ftc.teamcode.paladins.Tasks.ATaskThatDrivesALeftAndRightMotorAndDoesntCareWhatConfigItIs;
 import org.firstinspires.ftc.teamcode.paladins.Tasks.TankDriveEncTask;
 import org.firstinspires.ftc.teamcode.paladins.Tasks.TankDriveTask;
 import org.firstinspires.ftc.teamcode.paladins.Tasks.Task;
 import org.firstinspires.ftc.teamcode.paladins.common.PaladinsOpMode;
 import org.firstinspires.ftc.teamcode.paladins.common.TankDrive;
+import org.firstinspires.ftc.teamcode.paladins.config.TwoWheelBotConfiguration;
 
 import java.util.ArrayDeque;
 
@@ -26,7 +28,7 @@ public class TwoWheettLineDetect extends PaladinsOpMode {
         drive.setCountsPerCm(100.0);
         config.leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         config.rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        tasks.add(new TankDriveTask(this, 3.0, drive, 1.0, 0.5));
+        tasks.add(new ATaskThatDrivesALeftAndRightMotorAndDoesntCareWhatConfigItIs(this, 15.0, drive, 0.4, 0.4, config.colorSensor));
     }
 
     @Override
