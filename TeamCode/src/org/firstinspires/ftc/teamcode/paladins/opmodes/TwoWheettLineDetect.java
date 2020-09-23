@@ -10,19 +10,20 @@ import org.firstinspires.ftc.teamcode.paladins.Tasks.TankDriveTask;
 import org.firstinspires.ftc.teamcode.paladins.Tasks.Task;
 import org.firstinspires.ftc.teamcode.paladins.common.PaladinsOpMode;
 import org.firstinspires.ftc.teamcode.paladins.common.TankDrive;
+import org.firstinspires.ftc.teamcode.paladins.config.GameChangersBotConfiguration;
 import org.firstinspires.ftc.teamcode.paladins.config.TwoWheelBotConfiguration;
 
 import java.util.ArrayDeque;
 
 @Autonomous(name = "Two Wheet Line detect")
 public class TwoWheettLineDetect extends PaladinsOpMode {
-    private TwoWheelBotConfiguration config;
+    private GameChangersBotConfiguration config;
     private TankDrive drive;
     private ArrayDeque<Task> tasks = new ArrayDeque<>();
 
     @Override
     protected void onInit() {
-        config = TwoWheelBotConfiguration.newConfig(hardwareMap, telemetry);
+        config = GameChangersBotConfiguration.newConfig(hardwareMap, telemetry);
 
         drive = new TankDrive(this, gamepad1, config.leftMotor, config.rightMotor);
         drive.setCountsPerCm(100.0);
