@@ -4,34 +4,39 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.paladins.Tasks.TankDriveEncTask;
-import org.firstinspires.ftc.teamcode.paladins.Tasks.TankDriveTask;
+import org.firstinspires.ftc.teamcode.paladins.Tasks.TankDriveGyroTask;
 import org.firstinspires.ftc.teamcode.paladins.Tasks.Task;
 import org.firstinspires.ftc.teamcode.paladins.common.PaladinsOpMode;
 import org.firstinspires.ftc.teamcode.paladins.common.TankDrive;
+import org.firstinspires.ftc.teamcode.paladins.config.GameChangersBotConfiguration;
 import org.firstinspires.ftc.teamcode.paladins.config.TwoWheelBotConfiguration;
 
 import java.util.ArrayDeque;
 
 @Autonomous(name = "Stabilized Autonomous", group  = "Paladins")
 public class StabilizedAutonomous extends PaladinsOpMode {
-    private TwoWheelBotConfiguration config;
+    private GameChangersBotConfiguration config;
     private TankDrive drive;
     private ArrayDeque<Task> tasks = new ArrayDeque<>();
 
+    private double heading;
+
     @Override
     protected void onInit() {
-        config = TwoWheelBotConfiguration.newConfig(hardwareMap, telemetry);
+        config = GameChangersBotConfiguration.newConfig(hardwareMap, telemetry);
 
         config.gyroSensor.init();
 
         drive = new TankDrive(this, gamepad1, config.leftMotor, config.rightMotor);
-        tasks.add(new TankDriveTask(this, 0.5, drive, 1, 1));
-        tasks.add(new TankDriveTask(this, 20, drive, 1, 1));
+        tasks.add(new TankDriveGyroTask(this, config.gyroSensor, 0.5, drive, .8, 1));
+        tasks.add(new TankDriveGyroTask(this, config.gyroSensor, 20, drive, .8, 1));
     }
 
     @Override
     protected void activeLoop() throws InterruptedException {
-        telemetry.addData("Gyro:", config.gyroSensor.getHeading());
+        telemetry.addData("Gyro", config.gyroSensor.getHeading());
+        telemetry.addData("L", config.leftMotor.getPower());
+        telemetry.addData("R", config.rightMotor.getPower());
         Task currentTask = tasks.peekFirst();
         if (currentTask == null) {
             return;
