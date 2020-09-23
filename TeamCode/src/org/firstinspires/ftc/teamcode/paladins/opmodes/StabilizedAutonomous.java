@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.paladins.config.TwoWheelBotConfiguration;
 
 import java.util.ArrayDeque;
 
-@Autonomous(name = "Stabilized Autonomous")
+@Autonomous(name = "Stabilized Autonomous", group  = "Paladins")
 public class StabilizedAutonomous extends PaladinsOpMode {
     private TwoWheelBotConfiguration config;
     private TankDrive drive;
@@ -22,6 +22,8 @@ public class StabilizedAutonomous extends PaladinsOpMode {
     protected void onInit() {
         config = TwoWheelBotConfiguration.newConfig(hardwareMap, telemetry);
 
+        config.gyroSensor.init();
+
         drive = new TankDrive(this, gamepad1, config.leftMotor, config.rightMotor);
         tasks.add(new TankDriveTask(this, 0.5, drive, 1, 1));
         tasks.add(new TankDriveTask(this, 20, drive, 1, 1));
@@ -29,6 +31,7 @@ public class StabilizedAutonomous extends PaladinsOpMode {
 
     @Override
     protected void activeLoop() throws InterruptedException {
+        telemetry.addData("Gyro:", config.gyroSensor.getHeading());
         Task currentTask = tasks.peekFirst();
         if (currentTask == null) {
             return;
