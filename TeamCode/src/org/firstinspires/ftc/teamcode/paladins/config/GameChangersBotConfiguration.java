@@ -20,7 +20,8 @@ public class GameChangersBotConfiguration extends RobotConfiguration {
     public DcMotor leftMotor;
     public DcMotor rightMotor;
 
-    public ColorSensor colorSensor;
+    public ColorSensor leftColorSensor;
+    public ColorSensor rightColorSensor;
 
     public GyroSensor gyroSensor;
 
@@ -41,7 +42,8 @@ public class GameChangersBotConfiguration extends RobotConfiguration {
         rightMotor = (DcMotor) getHardwareOn("right_motor", hardwareMap.dcMotor);
 
 
-        colorSensor = hardwareMap.colorSensor.get("color_sensor");
+        leftColorSensor = hardwareMap.colorSensor.get("left_color_sensor");
+        rightColorSensor = hardwareMap.colorSensor.get("right_color_sensor");
 
         gyroSensor = hardwareMap.gyroSensor.get("gyro_sensor");
     }

@@ -29,7 +29,7 @@ public class TwoWheettLineDetect extends PaladinsOpMode {
         drive.setCountsPerCm(100.0);
         config.leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         config.rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        tasks.add(new ATaskThatDrivesALeftAndRightMotorAndDoesntCareWhatConfigItIs(this, 15.0, drive, 0.4, 0.4, config.colorSensor));
+        tasks.add(new ATaskThatDrivesALeftAndRightMotorAndDoesntCareWhatConfigItIs(this, 15.0, drive, 0.4, 0.4, config.leftColorSensor));
     }
 
     @Override

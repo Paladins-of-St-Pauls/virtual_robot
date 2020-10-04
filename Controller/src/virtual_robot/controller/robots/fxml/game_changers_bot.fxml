@@ -17,6 +17,7 @@
         <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#10443a" height="20.0" stroke="BLACK" strokeType="INSIDE" width="8.0" x="65.0" y="54.0" />
 
         <Rectangle fx:id="backServoArm" arcHeight="5.0" arcWidth="5.0" fill="MAGENTA" height="5.0" stroke="BLACK" strokeType="INSIDE" width="22.5" x="15.0" y="65.0" />
-        <Circle fill="DODGERBLUE" centerX="37.5" centerY="37.5" radius="6.0"  />
+        <Circle fx:id="leftSensorCircle" fill="DODGERBLUE" centerX="7.0" centerY="5.0" radius="6.0"  />
+        <Circle fx:id="rightSensorCircle" fill="DODGERBLUE" centerX="68.0" centerY="5.0" radius="6.0"  />
     </children>
 </Group>

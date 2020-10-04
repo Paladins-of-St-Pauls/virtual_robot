@@ -634,18 +634,26 @@ public class VirtualRobotController {
             double tempRed = 0.0;
             double tempGreen = 0.0;
             double tempBlue = 0.0;
+            int count = 0;
             for (int row = colorY-4; row < colorY+5; row++)
                 for (int col = colorX - 4; col < colorX+5; col++){
-                    Color c = pixelReader.getColor(col, row);
-                    tempRed += c.getRed();
-                    tempGreen += c.getGreen();
-                    tempBlue += c.getBlue();
+                    if (row >=0 && row < fieldWidth && col >=0 && col < fieldWidth) {
+                        Color c = pixelReader.getColor(col, row);
+                        tempRed += c.getRed();
+                        tempGreen += c.getGreen();
+                        tempBlue += c.getBlue();
+                        count++;
+                    }
                 }
-            tempRed = Math.floor( tempRed * 256.0 / 81.0 );
+            if (count == 0) {
+                count = 1;
+            }
+
+            tempRed = Math.floor( tempRed * 256.0 / (double)count );
             if (tempRed == 256) tempRed = 255;
-            tempGreen = Math.floor( tempGreen * 256.0 / 81.0 );
+            tempGreen = Math.floor( tempGreen * 256.0 / (double)count );
             if (tempGreen == 256) tempGreen = 255;
-            tempBlue = Math.floor( tempBlue * 256.0 / 81.0 );
+            tempBlue = Math.floor( tempBlue * 256.0 / (double)count );
             if (tempBlue == 256) tempBlue = 255;
             red = (int)tempRed;
             green = (int)tempGreen;
